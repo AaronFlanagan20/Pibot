@@ -1,0 +1,38 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{sys}
+\PYG{k+kn}{import} \PYG{n+nn}{time}
+\PYG{n}{sys}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}lib/\PYGZsq{}}\PYG{p}{)}
+
+\PYG{k+kn}{from} \PYG{n+nn}{myo} \PYG{k+kn}{import} \PYG{n}{Myo}
+\PYG{k+kn}{from} \PYG{n+nn}{camera} \PYG{k+kn}{import} \PYG{n}{Camera}
+\PYG{k+kn}{from} \PYG{n+nn}{pibot} \PYG{k+kn}{import} \PYG{n}{Bot}
+\PYG{k+kn}{from} \PYG{n+nn}{print\PYGZus{}pose\PYGZus{}listener} \PYG{k+kn}{import} \PYG{n}{PrintPoseListener}
+\PYG{k+kn}{from} \PYG{n+nn}{vibration\PYGZus{}type} \PYG{k+kn}{import} \PYG{n}{VibrationType}
+
+\PYG{k}{def} \PYG{n+nf}{main}\PYG{p}{():}
+ \PYG{k}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Start Myo for Linux\PYGZsq{}}\PYG{p}{)}
+
+ \PYG{n}{listener} \PYG{o}{=} \PYG{n}{PrintPoseListener}\PYG{p}{()}
+ \PYG{n}{myo} \PYG{o}{=} \PYG{n}{Myo}\PYG{p}{()}
+
+ \PYG{k}{try}\PYG{p}{:}
+  \PYG{n}{myo}\PYG{o}{.}\PYG{n}{connect}\PYG{p}{()}
+  \PYG{n}{myo}\PYG{o}{.}\PYG{n}{add\PYGZus{}listener}\PYG{p}{(}\PYG{n}{listener}\PYG{p}{)}
+  \PYG{n}{myo}\PYG{o}{.}\PYG{n}{vibrate}\PYG{p}{(}\PYG{n}{VibrationType}\PYG{o}{.}\PYG{n}{SHORT}\PYG{p}{)}
+  \PYG{k}{while} \PYG{n+nb+bp}{True}\PYG{p}{:}
+   \PYG{n}{myo}\PYG{o}{.}\PYG{n}{run}\PYG{p}{()}
+   \PYG{k}{print}\PYG{p}{(}\PYG{n}{listener}\PYG{o}{.}\PYG{n}{getPose}\PYG{p}{())}
+   \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}
+
+
+ \PYG{k}{except} \PYG{n+ne}{KeyboardInterrupt}\PYG{p}{:}
+  \PYG{k}{pass}
+ \PYG{k}{except} \PYG{n+ne}{ValueError} \PYG{k}{as} \PYG{n}{ex}\PYG{p}{:}
+  \PYG{k}{print}\PYG{p}{(}\PYG{n}{ex}\PYG{p}{)}
+ \PYG{k}{finally}\PYG{p}{:}
+  \PYG{n}{myo}\PYG{o}{.}\PYG{n}{safely\PYGZus{}disconnect}\PYG{p}{()}
+  \PYG{k}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Finished.\PYGZsq{}}\PYG{p}{)}
+
+\PYG{k}{if} \PYG{n}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}\PYGZus{}\PYGZus{}main\PYGZus{}\PYGZus{}\PYGZsq{}}\PYG{p}{:}
+\PYG{n}{main}\PYG{p}{()}
+\end{Verbatim}

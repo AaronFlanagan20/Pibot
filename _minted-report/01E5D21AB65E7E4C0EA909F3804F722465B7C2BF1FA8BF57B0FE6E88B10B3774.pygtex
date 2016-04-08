@@ -1,0 +1,58 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{RPi.GPIO} \PYG{k+kn}{as} \PYG{n+nn}{GPIO}
+\PYG{k+kn}{import} \PYG{n+nn}{time}
+
+\PYG{n}{eight} \PYG{o}{=} \PYG{l+m+mi}{8}
+\PYG{n}{seven} \PYG{o}{=} \PYG{l+m+mi}{7}
+\PYG{n}{nine} \PYG{o}{=} \PYG{l+m+mi}{9}
+\PYG{n}{eleven} \PYG{o}{=} \PYG{l+m+mi}{11}
+
+\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{setmode}\PYG{p}{(}\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{BCM}\PYG{p}{)}
+\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{setup}\PYG{p}{(}\PYG{n}{eight}\PYG{p}{,}\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{OUT}\PYG{p}{)}
+\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{setup}\PYG{p}{(}\PYG{n}{seven}\PYG{p}{,}\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{OUT}\PYG{p}{)}
+\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{setup}\PYG{p}{(}\PYG{n}{nine}\PYG{p}{,}\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{OUT}\PYG{p}{)}
+\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{setup}\PYG{p}{(}\PYG{n}{eleven}\PYG{p}{,}\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{OUT}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Bot}\PYG{p}{(}\PYG{n+nb}{object}\PYG{p}{):}
+
+\PYG{k}{def} \PYG{n+nf}{right}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+ \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}
+ \PYG{k}{while} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{2}\PYG{p}{:}
+ \PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{output}\PYG{p}{(}\PYG{n}{eight}\PYG{p}{,}\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{HIGH}\PYG{p}{)}
+ \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{o}{.}\PYG{l+m+mi}{9}\PYG{p}{)}
+ \PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{output}\PYG{p}{(}\PYG{n}{eight}\PYG{p}{,}\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{LOW}\PYG{p}{)}
+ \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{o}{.}\PYG{l+m+mi}{5}\PYG{p}{)}
+ \PYG{n}{i} \PYG{o}{=} \PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1}
+
+\PYG{k}{def} \PYG{n+nf}{left}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+ \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}
+ \PYG{k}{while} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{2}\PYG{p}{:}
+ \PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{output}\PYG{p}{(}\PYG{n}{seven}\PYG{p}{,}\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{HIGH}\PYG{p}{)}
+ \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{o}{.}\PYG{l+m+mi}{9}\PYG{p}{)}
+ \PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{output}\PYG{p}{(}\PYG{n}{seven}\PYG{p}{,}\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{LOW}\PYG{p}{)}
+ \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{o}{.}\PYG{l+m+mi}{5}\PYG{p}{)}
+ \PYG{n}{i} \PYG{o}{=} \PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1}
+
+\PYG{k}{def} \PYG{n+nf}{forward}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+ \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}
+ \PYG{k}{while} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{2}\PYG{p}{:}
+ \PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{output}\PYG{p}{(}\PYG{n}{nine}\PYG{p}{,}\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{HIGH}\PYG{p}{)}
+ \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{o}{.}\PYG{l+m+mi}{9}\PYG{p}{)}
+ \PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{output}\PYG{p}{(}\PYG{n}{nine}\PYG{p}{,}\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{LOW}\PYG{p}{)}
+ \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{o}{.}\PYG{l+m+mi}{5}\PYG{p}{)}
+ \PYG{n}{i} \PYG{o}{=} \PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1}
+
+\PYG{k}{def} \PYG{n+nf}{back}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+ \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}
+ \PYG{k}{while} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{2}\PYG{p}{:}
+ \PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{output}\PYG{p}{(}\PYG{n}{eleven}\PYG{p}{,}\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{HIGH}\PYG{p}{)}
+ \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{o}{.}\PYG{l+m+mi}{9}\PYG{p}{)}
+ \PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{output}\PYG{p}{(}\PYG{n}{eleven}\PYG{p}{,}\PYG{n}{GPIO}\PYG{o}{.}\PYG{n}{LOW}\PYG{p}{)}
+ \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{o}{.}\PYG{l+m+mi}{5}\PYG{p}{)}
+ \PYG{n}{i} \PYG{o}{=} \PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1}
+
+ \PYG{c+c1}{\PYGZsh{}Bot().left()}
+ \PYG{c+c1}{\PYGZsh{}Bot().right()}
+ \PYG{c+c1}{\PYGZsh{}Bot().back()}
+ \PYG{c+c1}{\PYGZsh{}Bot().forward()}
+\end{Verbatim}

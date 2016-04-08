@@ -1,0 +1,38 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} import the necessary packages}
+\PYG{k+kn}{from} \PYG{n+nn}{picamera.array} \PYG{k+kn}{import} \PYG{n}{PiRGBArray}
+\PYG{k+kn}{from} \PYG{n+nn}{picamera} \PYG{k+kn}{import} \PYG{n}{PiCamera}
+\PYG{k+kn}{import} \PYG{n+nn}{time}
+\PYG{k+kn}{import} \PYG{n+nn}{cv2}
+
+\PYG{k}{class} \PYG{n+nc}{Camera}\PYG{p}{(}\PYG{n+nb}{object}\PYG{p}{):}
+\PYG{k}{def} \PYG{n+nf}{runCam}\PYG{p}{():}
+\PYG{c+c1}{\PYGZsh{} initialize the camera and grab a reference to the raw camera capture}
+ \PYG{n}{camera} \PYG{o}{=} \PYG{n}{PiCamera}\PYG{p}{()}
+ \PYG{n}{camera}\PYG{o}{.}\PYG{n}{resolution} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{640}\PYG{p}{,} \PYG{l+m+mi}{480}\PYG{p}{)}
+ \PYG{n}{camera}\PYG{o}{.}\PYG{n}{vflip} \PYG{o}{=} \PYG{n+nb+bp}{True}
+ \PYG{n}{camera}\PYG{o}{.}\PYG{n}{framerate} \PYG{o}{=} \PYG{l+m+mi}{72}
+ \PYG{n}{rawCapture} \PYG{o}{=} \PYG{n}{PiRGBArray}\PYG{p}{(}\PYG{n}{camera}\PYG{p}{,} \PYG{n}{size}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{640}\PYG{p}{,} \PYG{l+m+mi}{480}\PYG{p}{))}
+
+ \PYG{n}{camera}\PYG{o}{.}\PYG{n}{start\PYGZus{}preview}\PYG{p}{()}
+
+ \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+
+ \PYG{c+c1}{\PYGZsh{} capture frames from the camera}
+ \PYG{k}{for} \PYG{n}{frame} \PYG{o+ow}{in} \PYG{n}{camera}\PYG{o}{.}\PYG{n}{capture\PYGZus{}continuous}\PYG{p}{(}\PYG{n}{rawCapture}\PYG{p}{,} \PYG{n}{format}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}bgr\PYGZdq{}}\PYG{p}{,}
+  \PYG{n}{use\PYGZus{}video\PYGZus{}port}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{):}
+ \PYG{c+c1}{\PYGZsh{} grab the raw NumPy array representing the image, then initialize the timestamp}
+ \PYG{c+c1}{\PYGZsh{} and occupied/unoccupied text}
+ \PYG{n}{image} \PYG{o}{=} \PYG{n}{frame}\PYG{o}{.}\PYG{n}{array}
+
+ \PYG{c+c1}{\PYGZsh{} show the frame}
+ \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Frame\PYGZdq{}}\PYG{p}{,} \PYG{n}{image}\PYG{p}{)}
+ \PYG{n}{key} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{waitKey}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{\PYGZam{}} \PYG{l+m+mh}{0xFF}
+
+ \PYG{c+c1}{\PYGZsh{} clear the stream in preparation for the next frame}
+ \PYG{n}{rawCapture}\PYG{o}{.}\PYG{n}{truncate}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)}
+
+ \PYG{c+c1}{\PYGZsh{} if the `q` key was pressed, break from the loop}
+ \PYG{k}{if} \PYG{n}{key} \PYG{o}{==} \PYG{n+nb}{ord}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}q\PYGZdq{}}\PYG{p}{):}
+ \PYG{k}{break}
+\end{Verbatim}
