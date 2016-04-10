@@ -1,0 +1,22 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{}from pibot import Bot}
+\PYG{c+c1}{\PYGZsh{}from camera import Camera}
+
+\PYG{k}{def} \PYG{n+nf}{onPoseEdge}\PYG{p}{(}\PYG{n}{pose}\PYG{p}{,} \PYG{n}{edge}\PYG{p}{):}
+ \PYG{k}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}OnPoseEDGE: \PYGZdq{}} \PYG{o}{+} \PYG{n}{pose}\PYG{p}{)}
+
+ \PYG{c+c1}{\PYGZsh{}camera.runCam()}
+
+ \PYG{k}{if} \PYG{p}{(}\PYG{n}{pose} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}waveOut\PYGZdq{}}\PYG{p}{):}
+  \PYG{c+c1}{\PYGZsh{}Bot.right()}
+
+ \PYG{k}{if} \PYG{p}{(}\PYG{n}{pose} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}waveIn\PYGZdq{}}\PYG{p}{):}
+  \PYG{c+c1}{\PYGZsh{}Bot.left()}
+
+ \PYG{k}{if} \PYG{p}{(}\PYG{n}{pose} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}fist\PYGZdq{}}\PYG{p}{):}
+  \PYG{c+c1}{\PYGZsh{}Bot.left()}
+  \PYG{c+c1}{\PYGZsh{}Bot.right()}
+
+ \PYG{k}{if}\PYG{p}{(}\PYG{n}{pose} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}fingerSpread\PYGZdq{}}\PYG{p}{):}
+  \PYG{c+c1}{\PYGZsh{}Bot.stop()}
+\end{Verbatim}
