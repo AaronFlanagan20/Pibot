@@ -4,6 +4,8 @@ Supervisor: Damien Costello
 
 Developers: David Hynes, Ciaran Brennan, Aaron Flanagan.
 
+Video: [Video of project running](https://www.youtube.com/watch?v=VdV43RQy9BA&feature=youtu.be)
+
 # Background
 This project was developed for our 4th year of software development in Galway-Mayo Institute of Technology. It is based on a human controlled search and rescue robot using the [Myo Gesture controlled armband](https://www.myo.com/) as the controller and a [Raspberry PI](https://www.raspberrypi.org/) acting as the robot.
 
